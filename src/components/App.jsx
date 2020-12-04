@@ -12,37 +12,37 @@ import $ from 'jquery';
 
 export class App extends Component {
   state = {
-    resumeData : {},
+    resumeData: {},
   }
-  getResumeData(){
+  getResumeData() {
     $.ajax({
-      url:'/data.json',
-      dataType:'json',
+      url: '/data.json',
+      dataType: 'json',
       cache: false,
-      success: function(data){
-        this.setState({resumeData: data});
+      success: function (data) {
+        this.setState({ resumeData: data });
       }.bind(this),
-      error: function(xhr, status, err){
+      error: function (xhr, status, err) {
         console.log(err);
         alert(err);
       }
     });
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.getResumeData();
   }
 
   render() {
     return (
-      <div>
+      <>
         <Navigation />
-        <Header data={this.state.resumeData.Header}/>
-        <Features data={this.state.resumeData.Features}/>
-        <About  data={this.state.resumeData.About}/>
-        <Services  data={this.state.resumeData.Services}/>
-        <Contact  data={this.state.resumeData.Contact}/>
-      </div>
+        <Header data={this.state.resumeData.Header} />
+        <Features data={this.state.resumeData.Features} />
+        <About data={this.state.resumeData.About} />
+        <Services data={this.state.resumeData.Services} />
+        <Contact data={this.state.resumeData.Contact} />
+      </>
     )
   }
 }
